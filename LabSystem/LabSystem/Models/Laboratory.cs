@@ -1,11 +1,11 @@
-﻿using LabSystem.Abstracts;
-using LabSystem.Interfaces;
+﻿using LabSystem.Interfaces;
 
 namespace LabSystem.Models
 {
-    public class Customer : A_User, IContact
+    public class Laboratory : IContact
     {
-        public bool IsActive { get; set; }
+        public int LaboratoryId { get; set; }
+        public string Name { get; set; }
 
         public string Voivodeship { get; set; }
         public string Commune { get; set; }
@@ -13,10 +13,5 @@ namespace LabSystem.Models
         public string PostalCode { get; set; }
         public string Street { get; set; }
         public string Phone { get; set; }
-
-        public Customer()
-        {
-            IsActive = false;
-        }
     }
 }
