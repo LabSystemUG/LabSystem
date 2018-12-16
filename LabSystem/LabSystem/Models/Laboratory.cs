@@ -6,6 +6,7 @@ namespace LabSystem.Models
     {
         public int LaboratoryId { get; set; }
         public string Name { get; set; }
+        public string Email { get; set; }
 
         public string Voivodeship { get; set; }
         public string Commune { get; set; }

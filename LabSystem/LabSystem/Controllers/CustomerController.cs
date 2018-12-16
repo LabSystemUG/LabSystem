@@ -2,30 +2,37 @@
 
 namespace LabSystem.Controllers
 {
-    public class HomeController : Controller
+    public class CustomerController : Controller
     {
+        // GET: Customer
         public ActionResult Index()
         {
             return View();
         }
 
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
-        }
-
-        public ActionResult Surveys()
+        public ActionResult EditAccount()
         {
             return View();
         }
+
+        public ActionResult ShowOrders()
+        {
+            return View();
+        }
+
+        public ActionResult CreateOrder()
+        {
+            return View();
+        }
+
+        public ActionResult RequestInvoice()
+        {
+            return View();
+        }
+
+
+
+
+
     }
 }
