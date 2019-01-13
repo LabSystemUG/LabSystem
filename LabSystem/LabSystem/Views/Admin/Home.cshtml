@@ -1,0 +1,98 @@
+﻿@using LabSystem.Abstracts
+@using LabSystem.Models
+@model LabSystem.ViewModels.VM_Admin
+
+
+@{
+    ViewBag.Title = "Admin Panel";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Admin Home</h2>
+
+<button><a href="@Url.Action("UserRoles", "Admin")">Uprawnienia</a></button>
+@*<button><a href="@Url.Action("DeleteUser", "Admin")">Usuń użytkownika</a></button>*@
+
+
+<div id="admin-activation">
+    <h1>Pracownicy</h1>
+    <ul>
+        @foreach (var item in Model.employeeList)
+        {
+            <li>
+                @item.Name @item.Surname @item.Login
+                <a class="activation-btn" onclick="changeActivityStatus(@item.Id)">
+                        <p>dezaktywuj</p>
+                    }
+                    else
+                    {
+                        <p>aktywuj</p>
+                    }
+                </a>
+                <a href="@Url.Action("DeleteUser", "Admin", new { UserId = item.Id })">Usuń użytkownika</a>
+            </li>
+        }
+    </ul>
+
+    <h1>Klienci</h1>
+    <ul>
+        @foreach (var item in Model.customerList)
+        {
+            <li>
+                @item.Name @item.Surname @item.Login
+                <a class="user-activity-btn">
+                    @if (item.IsActive)
+                    {
+                        <p>dezaktywuj/aktywuj</p>
+                    }
+                </a>
+                <a class="user-activity-btn" href="@Url.Action("DeleteUser", "Admin", new { UserId = item.Id })">Usuń klienta</a>
+
+            </li>
+        }
+    </ul>
+
+
+</div>
+
+<div id="admin-roles">
+
+    @Html.DropDownList("employeeList", Model.employeeList.Select(x => new SelectListItem { Text = $"{x.Name} {x.Surname}", Value = x.Id.ToString() }))
+    @Html.DropDownList("roleList", Model.roleList.Select(x => new SelectListItem { Text = x.ToString(), Value = ((int)x).ToString() }))
+
+    <button id="role-update-btn">
+        Nadaj Uprawnienia
+    </button>
+</div>
+<script type="text/javascript" src="~/Scripts/jquery-3.3.1.js"></script>
+<script type="text/javascript">
+
+    $('#role-update-btn').on('click', () => {
+        var employee = $('#employeeList')[0].value;
+        var newRole = $('#roleList')[0].value;
+        $.ajax({
+            type: 'POST',
+            url: "@Url.Action("UpdateRole", "Admin")",
+            data: { roleId: newRole, employeeId: employee},
+            dataType: "json",
+            success: console.log('elo'),
+            error: console.log('nie')
+        });
+
+    });
+
+    function changeActivityStatus(userId) {
+
+//            var employee = $('#employeeList')[0].value;
+            var employee = userId;
+            var newRole = $('#roleList')[0].value;
+            $.ajax({
+                type: 'POST',
+                url: "@Url.Action("ChangeUserActivityStatus", "Admin")",
+                data: { UserId: userId},
+                dataType: "json",
+            });
+        var that = this;
+
+    }
+</script>

@@ -1,9 +1,10 @@
 ﻿using LabSystem.Abstracts;
+using System.Collections.Generic;
 
 namespace LabSystem.Models
 {
     public class Employee : A_User
     {
-        public int RoleId { get; set; }
+        public List<Role> Roles { get; set; }
     }
 }

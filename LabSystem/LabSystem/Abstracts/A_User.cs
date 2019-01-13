@@ -8,8 +8,6 @@
         public string Surname { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
-        // TODO: przerobic na ENUM ? 
-        public string AccountType { get; set; }
-
+        public bool IsActive { get; set; }
     }
 }

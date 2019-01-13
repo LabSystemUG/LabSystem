@@ -45,6 +45,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -123,10 +129,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Abstracts\ENUM_Role.cs" />
     <Compile Include="Abstracts\A_User.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Configuration\DatabaseContext.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\EmployeeController.cs" />
@@ -135,6 +143,31 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Interfaces\IContact.cs" />
+    <Compile Include="Migrations\201812181937274_Customers.cs" />
+    <Compile Include="Migrations\201812181937274_Customers.Designer.cs">
+      <DependentUpon>201812181937274_Customers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812271534596_Survey_Sample_Role_Report_Order_Laboratory_Invoice_Employee.cs" />
+    <Compile Include="Migrations\201812271534596_Survey_Sample_Role_Report_Order_Laboratory_Invoice_Employee.Designer.cs">
+      <DependentUpon>201812271534596_Survey_Sample_Role_Report_Order_Laboratory_Invoice_Employee.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812271629075_RoleChanged.cs" />
+    <Compile Include="Migrations\201812271629075_RoleChanged.Designer.cs">
+      <DependentUpon>201812271629075_RoleChanged.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812271914515_RoleEnum.cs" />
+    <Compile Include="Migrations\201812271914515_RoleEnum.Designer.cs">
+      <DependentUpon>201812271914515_RoleEnum.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812271931578_Delete_AccountType.cs" />
+    <Compile Include="Migrations\201812271931578_Delete_AccountType.Designer.cs">
+      <DependentUpon>201812271931578_Delete_AccountType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201901072037165_MZ_Wyrownanie_ID_Employee.cs" />
+    <Compile Include="Migrations\201901072037165_MZ_Wyrownanie_ID_Employee.Designer.cs">
+      <DependentUpon>201901072037165_MZ_Wyrownanie_ID_Employee.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\Employee.cs" />
     <Compile Include="Models\Invoice.cs" />
@@ -147,6 +180,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\InvoiceService.cs" />
     <Compile Include="Services\OrderService.cs" />
+    <Compile Include="ViewModels\VM_Admin.cs" />
     <Compile Include="ViewModels\VM_Invoice.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -185,10 +219,12 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Admin\Home.cshtml" />
+    <Content Include="Views\Shared\Admin\UserRoles.cshtml" />
+    <Content Include="Views\Shared\Admin\DeleteUser.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Admin\" />
     <Folder Include="Views\Customer\" />
     <Folder Include="Views\Default\" />
     <Folder Include="Views\Employee\" />
@@ -205,6 +241,26 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201812181937274_Customers.resx">
+      <DependentUpon>201812181937274_Customers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812271534596_Survey_Sample_Role_Report_Order_Laboratory_Invoice_Employee.resx">
+      <DependentUpon>201812271534596_Survey_Sample_Role_Report_Order_Laboratory_Invoice_Employee.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812271629075_RoleChanged.resx">
+      <DependentUpon>201812271629075_RoleChanged.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812271914515_RoleEnum.resx">
+      <DependentUpon>201812271914515_RoleEnum.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812271931578_Delete_AccountType.resx">
+      <DependentUpon>201812271931578_Delete_AccountType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901072037165_MZ_Wyrownanie_ID_Employee.resx">
+      <DependentUpon>201901072037165_MZ_Wyrownanie_ID_Employee.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
