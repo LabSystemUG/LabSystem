@@ -56,16 +56,26 @@ namespace LabSystem.Controllers
             }
         }
 
+
+
         public bool DeleteUser(int UserId)
         {
             return true;
         }
 
-        // BEZSENSU - chyba
-        //public ActionResult AddEmployee()
-        //{
-        //    return View();
-        //}
+        public ActionResult AddEmployee(Employee employee)
+        {
+            try
+            {
+                db.Employees.Add(employee);
+                db.SaveChanges();
+                return View();
+            }
+            catch
+            {
+                return View();
+            }
+        }
 
 
     }

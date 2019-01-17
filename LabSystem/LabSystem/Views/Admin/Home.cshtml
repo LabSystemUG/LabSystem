@@ -55,18 +55,40 @@
 
 </div>
 
+<div id="add-user">
+    <h1>Dodaj użytkownika</h1>
+    login:</br>
+    <input type="text" id="employee-login"></br>
+    imię:</br>
+    <input type="text" id="employee-name"></br>
+    nazwisko:</br>
+    <input type="text" id="employee-surname"></br>
+    email:</br>
+    <input type="text" id="employee-email"></br>
+    hasło:</br>
+    <input type="text" id="employee-pass" title="password"></br>
+    aktywny?:</br>
+    <input type="checkbox" id="employee-isactive" accesskey="dfdf">
+
+
+</div>
+
 <div id="admin-roles">
 
-    @Html.DropDownList("employeeList", Model.employeeList.Select(x => new SelectListItem { Text = $"{x.Name} {x.Surname}", Value = x.Id.ToString() }))
-    @Html.DropDownList("roleList", Model.roleList.Select(x => new SelectListItem { Text = x.ToString(), Value = ((int)x).ToString() }))
+    @*@Html.DropDownList("employeeList", Model.employeeList.Select(x => new SelectListItem { Text = $"{x.Name} {x.Surname}", Value = x.Id.ToString() }))
+    @Html.DropDownList("roleList", Model.roleList.Select(x => new SelectListItem { Text = x.ToString(), Value = ((int)x).ToString() }))*@
 
     <button id="role-update-btn">
         Nadaj Uprawnienia
     </button>
 </div>
 <script type="text/javascript" src="~/Scripts/jquery-3.3.1.js"></script>
+        <script type="text/javascript" src="~/Scripts/Admin/AdminFunctions.js"></script>
+        <script src="~/Scripts/Models/Employee.js"></script>
 <script type="text/javascript">
-
+    
+    import Employee from "../../Scripts/Models/Employee";
+    import AdminFunctions from "../../Scripts/Admin/AdminFunctions";
     $('#role-update-btn').on('click', () => {
         var employee = $('#employeeList')[0].value;
         var newRole = $('#roleList')[0].value;
@@ -78,10 +100,13 @@
             success: console.log('elo'),
             error: console.log('nie')
         });
-
     });
 
     function changeActivityStatus(userId) {
+
+        var aaa = getActivityValue();
+    }
+    function changeActivityStatus111(userId) {
 
 //            var employee = $('#employeeList')[0].value;
             var employee = userId;
@@ -93,6 +118,11 @@
                 dataType: "json",
             });
         var that = this;
+    }
+
+    function buildEmployee(){
+        var employee = new Employee("Pracownik", "kinwocarP");
+
 
     }
 </script>
