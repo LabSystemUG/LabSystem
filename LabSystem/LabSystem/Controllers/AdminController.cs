@@ -17,13 +17,15 @@ namespace LabSystem.Controllers
         // GET: Admin
         public ActionResult Home()
         {
-            var viewModel = new VM_Admin {
+            var viewModel = new VM_Admin
+            {
                 employeeList = db.Employees.ToList(),
                 customerList = db.Customers.ToList(),
                 roleList = new List<ENUM_Role>(Enum.GetValues(typeof(ENUM_Role)) as IEnumerable<ENUM_Role>)
             };
             return View(viewModel);
         }
+
         public bool ChangeUserActivityStatus(int UserId)
         {
             try
@@ -60,6 +62,24 @@ namespace LabSystem.Controllers
 
         public bool DeleteUser(int UserId)
         {
+            try
+            {
+                db.Customers.Remove(db.Customers.Where(x => x.Id == UserId) as Customer);
+                db.Customers.Where(x => x.Id == UserId);
+            }
+            catch
+            {
+                try
+                {
+                    db.Employees.Remove(db.Employees.Where(x => x.Id == UserId) as Employee);
+                }
+                catch
+                {
+                    return false;
+                }
+
+            }
+            db.SaveChanges();
             return true;
         }
 
@@ -69,12 +89,11 @@ namespace LabSystem.Controllers
             {
                 db.Employees.Add(employee);
                 db.SaveChanges();
-                return View();
             }
             catch
             {
-                return View();
             }
+            return View();
         }
 
 

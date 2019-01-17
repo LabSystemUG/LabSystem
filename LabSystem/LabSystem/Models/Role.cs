@@ -8,4 +8,4 @@ namespace LabSystem.Models
         public ENUM_Role RoleType { get; set; }
         public int EmployeeId { get; set; }
     }
-}
+}   

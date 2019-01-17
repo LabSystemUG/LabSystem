@@ -1,9 +1,12 @@
-﻿using System.Web.Mvc;
+﻿using LabSystem.Configuration;
+using System.Web.Mvc;
 
 namespace LabSystem.Controllers
 {
     public class EmployeeController : Controller
     {
+        private DatabaseContext db = new DatabaseContext();
+
         // GET: Employee
         public ActionResult Index()
         {
@@ -12,6 +15,8 @@ namespace LabSystem.Controllers
 
         public ActionResult AddSurvey()
         {
+
+            db.Surveys.Add();    
             return View();
         }
 

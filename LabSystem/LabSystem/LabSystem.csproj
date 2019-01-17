@@ -136,6 +136,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Builders\VM_EmployeeBuilder.cs" />
     <Compile Include="Configuration\DatabaseContext.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
@@ -183,6 +184,7 @@
     <Compile Include="Services\InvoiceService.cs" />
     <Compile Include="Services\OrderService.cs" />
     <Compile Include="ViewModels\VM_Admin.cs" />
+    <Compile Include="ViewModels\VM_Employee.cs" />
     <Compile Include="ViewModels\VM_Invoice.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -226,6 +228,7 @@
     <Content Include="Views\Shared\Admin\DeleteUser.cshtml" />
     <Content Include="Views\Employee\View.cshtml" />
     <Content Include="tsconfig.json" />
+    <Content Include="Views\Employee\Home.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
